@@ -20,7 +20,7 @@ namespace wygaszacz
         {
             InitializeComponent();
             ulubioneList = new List<Ulubione>(); // inicjalizacja listy
-            //ulubioneList = OdczytajUlubioneZPliku();
+            ulubioneList = OdczytajUlubioneZPliku();
             OdswiezListeUlubionych();
         }
 
@@ -47,6 +47,7 @@ namespace wygaszacz
                 //wczytujemy adres strony i url do pliku
                 //rozdzielamy |
                 //by było bardizej przejrzyste
+
             }
         }
 
@@ -56,13 +57,13 @@ namespace wygaszacz
             List<Ulubione> lista = new List<Ulubione>();
             using(StreamReader sr = new StreamReader(@"E:\ulubione.txt"))
             {
-                //for
-                //while (warunek)
-                //{
-                //ciało pętli
-                //}
-                //do while
-                //foreach
+                string line;
+                while((line = sr.ReadLine()) != null)
+                {
+                    string[] elementy = line.Split('|');
+                    Ulubione ulubione = new Ulubione(elementy[0], elementy[1]);
+                    lista.Add(ulubione);
+                }
             }
         return lista;
         }
@@ -79,6 +80,64 @@ namespace wygaszacz
                 MessageBox.Show("Nie wpisales adresu strony!", "Błąd",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void okienkoBrw_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            AdresTxt.Text = okienkoBrw.Url.ToString();
+            //adres w adrestxt zmieniamy na aktualny adres wczytania strony
+            if(okienkoBrw.CanGoForward)
+            {
+                WprzodBtn.Enabled = true;
+            }
+            else
+            {
+                WprzodBtn.Enabled = false;
+            }
+
+            if(okienkoBrw.CanGoBack)
+            {
+                WsteczBtn.Enabled = true;
+            }
+            else
+            {
+                WsteczBtn.Enabled = false;
+            }        
+        }
+
+        private void WsteczBtn_Click(object sender, EventArgs e)
+        {
+            okienkoBrw.GoBack();
+        }
+
+        private void WprzodBtn_Click(object sender, EventArgs e)
+        {
+            okienkoBrw.GoForward();
+        }
+
+        private void ZatrzymajBtn_Click(object sender, EventArgs e)
+        {
+            okienkoBrw.Stop();
+        }
+
+        private void OdswiezBtn_Click(object sender, EventArgs e)
+        {
+            okienkoBrw.Refresh();
+        }
+
+        private void ulubioneBtn_Click(object sender, EventArgs e)
+        {
+            string url = AdresTxt.Text;
+            string tytul = okienkoBrw.Document.Title;
+            ZapiszDoUlubionych(url, tytul);
+        }
+
+        private void ulubioneCmd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Ulubione ulubione = ulubioneCmb.SelectedItem as Ulubione;
+            AdresTxt.Text = ulubione.Url;
+            okienkoBrw.Navigate(AdresTxt.Text);
+           
         }
     }
 

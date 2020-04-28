@@ -47,6 +47,7 @@
             this.WsteczBtn.TabIndex = 0;
             this.WsteczBtn.Text = "<";
             this.WsteczBtn.UseVisualStyleBackColor = true;
+            this.WsteczBtn.Click += new System.EventHandler(this.WsteczBtn_Click);
             // 
             // WprzodBtn
             // 
@@ -56,6 +57,7 @@
             this.WprzodBtn.TabIndex = 1;
             this.WprzodBtn.Text = ">";
             this.WprzodBtn.UseVisualStyleBackColor = true;
+            this.WprzodBtn.Click += new System.EventHandler(this.WprzodBtn_Click);
             // 
             // ZatrzymajBtn
             // 
@@ -65,6 +67,7 @@
             this.ZatrzymajBtn.TabIndex = 2;
             this.ZatrzymajBtn.Text = "Zatrzymaj";
             this.ZatrzymajBtn.UseVisualStyleBackColor = true;
+            this.ZatrzymajBtn.Click += new System.EventHandler(this.ZatrzymajBtn_Click);
             // 
             // OdswiezBtn
             // 
@@ -74,6 +77,7 @@
             this.OdswiezBtn.TabIndex = 3;
             this.OdswiezBtn.Text = "Odswiez";
             this.OdswiezBtn.UseVisualStyleBackColor = true;
+            this.OdswiezBtn.Click += new System.EventHandler(this.OdswiezBtn_Click);
             // 
             // ulubioneBtn
             // 
@@ -83,6 +87,7 @@
             this.ulubioneBtn.TabIndex = 4;
             this.ulubioneBtn.Text = "Dodaj do ulubionych";
             this.ulubioneBtn.UseVisualStyleBackColor = true;
+            this.ulubioneBtn.Click += new System.EventHandler(this.ulubioneBtn_Click);
             // 
             // ulubioneCmb
             // 
@@ -91,6 +96,7 @@
             this.ulubioneCmb.Name = "ulubioneCmb";
             this.ulubioneCmb.Size = new System.Drawing.Size(194, 21);
             this.ulubioneCmb.TabIndex = 5;
+            this.ulubioneCmb.SelectedIndexChanged += new System.EventHandler(this.ulubioneCmd_SelectedIndexChanged);
             // 
             // IdzBtn
             // 
@@ -122,6 +128,7 @@
             this.okienkoBrw.Name = "okienkoBrw";
             this.okienkoBrw.Size = new System.Drawing.Size(1256, 465);
             this.okienkoBrw.TabIndex = 8;
+            this.okienkoBrw.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.okienkoBrw_Navigated);
             // 
             // Przegladarka
             // 
